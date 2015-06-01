@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatterbox</title>
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- dependencies -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/backbone/backbone-min.js"></script>
+    <!-- your scripts -->
+    <script src="env/config.js"></script>
+    <script src="scripts/app.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <h1>chatterbox</h1>
+      <div class="spinner"><img src="images/spiffygif_46x46.gif"></div>
+      <form id='send'>
+        <textarea id='message' rows='4' cols='50' placeholder='Type your message here'></textarea>
+        <input class='submit' type='submit'>
+      </form>
+      <div id='chats'></div>
+    </div>
+  </body>
+</html>
