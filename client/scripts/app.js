@@ -23,6 +23,7 @@ var Messages = Backbone.Collection.extend({
   },
 
   parse: function(response, options) {
+    console.log(response);
     var results = [];
     for (var i = response.results.length-1; i >= 0; i--) {
       results.push(response.results[i]);
@@ -51,17 +52,17 @@ var MessagesView = Backbone.View.extend({
   },
 
   render: function () {
-
+    this.$el.empty();
     this.collection.forEach(this.renderMessage, this);
 
   },
 
   renderMessage: function(message) {
-    if (!this.onscreenMessages[message.get('objectId')]) {
-      var messageView = new MessageView({model: message});
-      this.$el.prepend(messageView.render());
-      this.onscreenMessages[message.get('objectId')] = true;
-    }
+    //if (!this.onscreenMessages[message.get('objectId')]) {
+    var messageView = new MessageView({model: message});
+    this.$el.prepend(messageView.render());
+    this.onscreenMessages[message.get('objectId')] = true;
+    //}
   }
 
 });
@@ -104,13 +105,13 @@ var FormView = Backbone.View.extend({
 
 $(function() {
 
-  var messages = new Messages();
-  messages.loadMessages();
-  var messagesView = new MessagesView({el: $('#chats'), collection: messages});
-  var formView = new FormView({ el: $('#main'), collection: messages});
-  setInterval(messages.loadMessages.bind(messages), 1000);
+  window.messages = new Messages();
+  window.messages.loadMessages();
+  var messagesView = new MessagesView({el: $('#chats'), collection: window.messages});
+  var formView = new FormView({ el: $('#main'), collection: window.messages});
+  setInterval(window.messages.loadMessages.bind(window.messages), 10000);
 
-})
+});
 
 
 
